@@ -1,0 +1,27 @@
+{
+  "name": "backend-blog",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferch01992/backend-blog.git"
+  },
+  "keywords": [
+    "Node JS",
+    "Express",
+    "Mongo"
+  ],
+  "author": "Ferch01992",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ferch01992/backend-blog/issues"
+  },
+  "homepage": "https://github.com/ferch01992/backend-blog#readme",
+  "devDependencies": {
+    "nodemon": "2.0.20"
+  }
+}

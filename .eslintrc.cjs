@@ -10,6 +10,16 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        ignoreCase: true,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['all', 'single', 'multiple', 'none'],
+      },
+    ],
     'sort-keys': [
       'error',
       'asc',

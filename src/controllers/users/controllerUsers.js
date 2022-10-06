@@ -1,4 +1,5 @@
 import { user } from './../../models/user/modelUser.js'
+import { validationMongoErrors } from '../../utils/utils.js'
 
 export const controllerUserList = async () => {
   return await user
@@ -11,6 +12,17 @@ export const controllerUserList = async () => {
       return { code: 200, data: objData }
     })
     .catch(error => {
-      return { code: 422, message: error.message }
+      return validationMongoErrors(error)
+    })
+}
+
+export const controllerUserSave = async body => {
+  return await user(body)
+    .save()
+    .then(data => {
+      return { code: 200, data }
+    })
+    .catch(error => {
+      return validationMongoErrors(error)
     })
 }

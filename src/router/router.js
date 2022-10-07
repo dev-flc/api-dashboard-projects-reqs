@@ -7,12 +7,12 @@ import {
   postUserUpdate
 } from './../services/users/users.js'
 
-import { postAuthLogin } from './../services/auth/auth.js'
+import { postSignIn } from './../services/auth/auth.js'
 
 const router = express.Router()
 
 // Auth
-router.post('/login', postAuthLogin)
+router.post('/sign-in', postSignIn)
 
 // User
 router.get('/user-list', getUserList)

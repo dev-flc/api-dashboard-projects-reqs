@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { SEND_CODE_STATUS } from './../../constants/constants.js'
 import { User } from './../../models/user/modelUser.js'
 import { validationMongoErrors } from '../../utils/utils.js'
@@ -18,7 +19,7 @@ export const controllerUserList = async () => {
 }
 
 export const controllerUserSave = async body => {
-  return await User(body)
+  return await User({ ...body, tokenConfirm: nanoid() })
     .save()
     .then(data => {
       const { code, name } = SEND_CODE_STATUS[200]

@@ -1,30 +1,34 @@
+import bcrypt from 'bcrypt'
 import { model, Schema } from 'mongoose'
 
 const schemeUser = new Schema(
   {
-    done: {
+    confirmAccount: {
       default: false,
       type: Boolean
     },
-
-    first_name: {
+    email: {
+      index: { unique: true },
+      lowercase: true,
+      require: [true, 'Please enter your email'],
+      trim: true,
+      type: String,
+      unique: true
+    },
+    password: {
+      require: [true, 'Please enter your password'],
       trim: true,
       type: String
     },
-
-    last_name: {
+    tokenConfirm: {
+      default: null,
       trim: true,
       type: String
     },
-
-    name: {
-      required: [true, 'Please enter your name'],
-      trim: true,
-      type: String
-    },
-
-    rfc: {
-      required: [true, 'Please enter your rfc'],
+    userName: {
+      index: { unique: true },
+      lowercase: true,
+      require: [true, 'Please enter your user name'],
       trim: true,
       type: String,
       unique: true
@@ -35,5 +39,14 @@ const schemeUser = new Schema(
     versionKey: false
   }
 )
-const User = model('users', schemeUser)
+schemeUser.pre('save', async function (next) {
+  const user = this
+  if (!user.isModified('password')) return next()
+  const salt = await bcrypt.genSalt(10)
+  const hash = await bcrypt.hash(user.password, salt)
+  user.password = hash
+  next()
+})
+
+const User = model('User', schemeUser)
 export { User }

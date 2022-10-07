@@ -15,6 +15,10 @@ export const SEND_CODE_STATUS = {
     code: 400,
     name: 'Bad Request'
   },
+  401: {
+    code: 401,
+    name: 'Unauthorized'
+  },
   403: {
     code: 403,
     name: 'Forbidden'
@@ -25,7 +29,7 @@ export const SEND_CODE_STATUS = {
   },
   422: {
     code: 422,
-    name: 'The data already exists!'
+    name: 'Unprocessable Entity'
   },
   500: {
     code: 500,

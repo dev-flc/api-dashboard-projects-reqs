@@ -8,11 +8,13 @@ dotenv.config()
 const { PORT } = process.env
 const NEW_PORT = PORT || 3002
 const APP = express()
+
 APP.use(express.json())
+
 APP.use('/', router)
 
 APP.get('*', (request, response) => {
-  response.send(' W E L C O M E - 404')
+  response.send('4 0 4')
 })
 
 APP.listen(NEW_PORT, () => {

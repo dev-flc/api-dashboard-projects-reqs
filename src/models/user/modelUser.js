@@ -35,5 +35,5 @@ const schemeUser = new Schema(
     versionKey: false
   }
 )
-const user = model('users', schemeUser)
-export { user }
+const User = model('users', schemeUser)
+export { User }

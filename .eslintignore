@@ -7,3 +7,4 @@ LICENCE
 .prettierignore
 node_modules/
 .eslintcache
+api/

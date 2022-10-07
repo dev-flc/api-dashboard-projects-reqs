@@ -6,4 +6,5 @@ LICENCE
 .eslintignore
 .prettierignore
 node_modules/
+api/
 .eslintcache

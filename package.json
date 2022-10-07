@@ -2,13 +2,23 @@
   "name": "backend-blog",
   "version": "1.0.0",
   "description": "backend blog",
-  "main": "index.js",
+  "main": "api/index.js",
   "type": "module",
+  "files": [
+    "api"
+  ],
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "lint": "eslint . --cache --fix",
+    "clean": "rm -rf ./api",
     "prettier": "prettier . --write",
     "prepare": "husky install",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "npm run clean && babel src --out-dir api --copy-files ",
+    "start": "node api/index.js",
+    "logs": "heroku logs --tail --app flc-backend-blog"
   },
   "repository": {
     "type": "git",
@@ -26,8 +36,11 @@
   },
   "homepage": "https://github.com/ferch01992/backend-blog#readme",
   "devDependencies": {
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.19.3",
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
+    "babel-preset-minify": "0.5.2",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard": "17.0.0",

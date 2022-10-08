@@ -19,9 +19,10 @@ export const controllerUserList = async () => {
 }
 
 export const controllerUserSave = async body => {
-  return await User({ ...body, tokenConfirm: nanoid() })
+  return await User({ ...body, tokenConfirm: nanoid() }) // replaze nanoid for jwt
     .save()
     .then(data => {
+      // enviar correo con la confirmacion de la cuenta
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }
     })

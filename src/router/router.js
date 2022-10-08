@@ -7,12 +7,13 @@ import {
   postUserUpdate
 } from './../services/users/users.js'
 
-import { postSignIn } from './../services/auth/auth.js'
+import { getConfirmAccount, postSignIn } from './../services/auth/auth.js'
 
 const router = express.Router()
 
 // Auth
 router.post('/sign-in', postSignIn)
+router.get('/confirm-account/:token', getConfirmAccount)
 
 // User
 router.get('/user-list', getUserList)

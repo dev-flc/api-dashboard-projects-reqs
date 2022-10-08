@@ -20,17 +20,21 @@ export const validationMongoErrors = async error => {
     const message = getKeyErrors(error)
     result.message = message[message.key]
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
   } else if (error.name === 'MongoServerError' && error.code === 11000) {
     result.message = `The data already exists: ${JSON.stringify(
       error.keyValue
     )}`
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
   } else if (error.name === 'CastError') {
     result.message = error.message
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
+  } else if (error.name === 'Error') {
+    result.message = error.message
+    result.code = SEND_CODE_STATUS[422].code
+    result.nameError = SEND_CODE_STATUS[422].name
   }
   return result
 }

@@ -4,14 +4,14 @@ import {
   controllerConfirmAccount
 } from './../../controllers/auth/controllerAuth.js'
 
-// SignIn
+// Sign in
 export const postSignIn = async (request, response) => {
   const resp = await controllerAuthLogin(request.body)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
   response.status(resp.code).send(resp)
 }
 
-// SignIn
+// Confirm account
 export const getConfirmAccount = async (request, response) => {
   const { token } = request.params
   const resp = await controllerConfirmAccount(token)

@@ -6,6 +6,11 @@ export const CONTENT_TYPE = {
   TEXT_X_JSON: 'text/x-json'
 }
 
+export const JWT_VALID_TIME = {
+  EXPIRE_JWT_CONFIRM_ACCOUNT: '1h',
+  EXPIRE_JWT_SESSION: '24h'
+}
+
 export const SEND_CODE_STATUS = {
   200: {
     code: 200,

@@ -6,7 +6,7 @@ const connectDatabase = async () => {
     const { port, name } = data.connections[0]
     console.log(`Connected database ${name}:${port}, successfully 🔌 🔌 🔌`)
   } catch (error) {
-    console.log('Error connect database 🔥 🔥 🔥', error)
+    console.log('Error connect database 🔥 🔥 🔥 ==>', error)
   }
 }
 

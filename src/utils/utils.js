@@ -1,4 +1,17 @@
+import jwt from 'jsonwebtoken'
 import { SEND_CODE_STATUS } from './../constants/constants.js'
+
+export const encode64 = str => Buffer.from(str).toString('base64')
+
+export const decode64 = str => Buffer.from(str, 'base64').toString('ascii')
+
+export const verifyAccessToken = token =>
+  jwt.verify(token, process.env.JWT_SECRET)
+
+export const generateAccessToken = (data, timeExpireJwt = '1h') =>
+  jwt.sign({ data }, process.env.JWT_SECRET, {
+    expiresIn: timeExpireJwt
+  })
 
 const getKeyErrors = error => {
   const message = {}
@@ -20,17 +33,26 @@ export const validationMongoErrors = async error => {
     const message = getKeyErrors(error)
     result.message = message[message.key]
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
   } else if (error.name === 'MongoServerError' && error.code === 11000) {
     result.message = `The data already exists: ${JSON.stringify(
       error.keyValue
     )}`
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
   } else if (error.name === 'CastError') {
     result.message = error.message
     result.code = SEND_CODE_STATUS[422].code
-    result.nameError = SEND_CODE_STATUS[400].name
+    result.nameError = SEND_CODE_STATUS[422].name
+  } else if (error.name === 'Error') {
+    result.message = error.message
+    result.code = SEND_CODE_STATUS[422].code
+    result.nameError = SEND_CODE_STATUS[422].name
+  } else if (error.name === 'TokenExpiredError') {
+    result.message = error.message
+    result.code = SEND_CODE_STATUS[401].code
+    result.nameError = SEND_CODE_STATUS[401].name
   }
+
   return result
 }

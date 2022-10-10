@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { SEND_CODE_STATUS } from './../constants/constants.js'
+import { APPLY_AUTH, SEND_CODE_STATUS } from './../constants/constants.js'
 
 /*
   decode: [Function (anonymous)],
@@ -11,7 +11,7 @@ import { SEND_CODE_STATUS } from './../constants/constants.js'
 */
 
 export const AUTH = (req, res, next) => {
-  if (process.env.APPLY_AUTH === 'YES') {
+  if (process.env.APPLY_AUTH === APPLY_AUTH.ON) {
     const tokenHeader =
       req.body.token || req.query.token || req.headers.authorization
     const token = tokenHeader && tokenHeader.split(' ')[1]

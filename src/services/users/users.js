@@ -21,7 +21,7 @@ export const postUserSave = async (request, response) => {
 }
 
 // Update user
-export const postUserUpdate = async (request, response) => {
+export const putUserUpdate = async (request, response) => {
   const { params, body } = request
   const resp = await controllerUserUpdate(params, body)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
@@ -29,7 +29,7 @@ export const postUserUpdate = async (request, response) => {
 }
 
 // Delete user
-export const postUserDelete = async (request, response) => {
+export const deleteUserDelete = async (request, response) => {
   const resp = await controllerUserDelete(request.params)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
   response.status(resp.code).send(resp)

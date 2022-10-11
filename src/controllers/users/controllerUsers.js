@@ -43,9 +43,8 @@ export const controllerUserSave = async body => {
 }
 
 export const controllerUserUpdate = async (params, body) => {
-  return await User.findByIdAndUpdate(params.id, body)
+  return await User.findByIdAndUpdate(params.id, body, { new: true })
     .then(data => {
-      // PENDIENTE REVISAR POR QUE NO REGRESA LOS ULTIMOS VALORES
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }
     })

@@ -1,10 +1,10 @@
 import { AUTH } from './../middleware/auth.js'
 import express from 'express'
 import {
+  deleteUserDelete,
   getUserList,
-  postUserDelete,
   postUserSave,
-  postUserUpdate
+  putUserUpdate
 } from './../services/users/users.js'
 
 import { getConfirmAccount, postSignIn } from './../services/auth/auth.js'
@@ -18,7 +18,7 @@ router.get('/confirm-account/:token', getConfirmAccount)
 // User
 router.get('/user-list', getUserList)
 router.post('/user-save', AUTH, postUserSave)
-router.put('/user-update/:id', AUTH, postUserUpdate)
-router.delete('/user-delete/:id', AUTH, postUserDelete)
+router.put('/user-update/:id', AUTH, putUserUpdate)
+router.delete('/user-delete/:id', AUTH, deleteUserDelete)
 
 export { router }

@@ -33,7 +33,6 @@ export const controllerUserSave = async body => {
   return await User({ ...body, tokenConfirm: encode64(token) })
     .save()
     .then(data => {
-      // enviar correo con la confirmacion de la cuenta
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }
     })
@@ -44,6 +43,7 @@ export const controllerUserSave = async body => {
 
 export const controllerUserUpdate = async (params, body) => {
   return await User.findByIdAndUpdate(params.id, body, { new: true })
+    .select('-password')
     .then(data => {
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }

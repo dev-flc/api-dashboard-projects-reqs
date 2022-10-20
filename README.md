@@ -5,4 +5,4 @@
 * https://mailtrap.io/
 * https://nodemailer.com/about/
 * https://web.postman.co/workspace/My-Workspace
-* https://app.redislabs.com/
+* https://app.redislabs.com/#/login

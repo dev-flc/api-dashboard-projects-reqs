@@ -60,7 +60,8 @@
     "jwt-redis": "7.0.3",
     "mongoose": "6.6.5",
     "nodemailer": "6.8.0",
-    "redis": "4.3.1"
+    "redis": "4.3.1",
+    "redis-server": "1.2.2"
   },
   "husky": {
     "hooks": {

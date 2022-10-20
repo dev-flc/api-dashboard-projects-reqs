@@ -17,6 +17,7 @@ export const controllerNoteList = async () => {
         {}
       )
       await clientRedis.set('note-list', JSON.stringify(data))
+      await clientRedis.expire('note-list', 60) // 60 * 60 * 24
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }
     })

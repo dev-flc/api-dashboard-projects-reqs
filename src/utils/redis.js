@@ -3,7 +3,11 @@ import JWTR from 'jwt-redis'
 
 const JWTRD = JWTR.default
 
-export const clientRedis = createClient()
+export const clientRedis = createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT
+})
+
 clientRedis.on('error', err => console.log('Redis Client Error', err))
 
 export const verifyAccessToken = async token => {

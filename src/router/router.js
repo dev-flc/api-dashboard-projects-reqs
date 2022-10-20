@@ -3,7 +3,7 @@ import express from 'express'
 import {
   deleteUserDelete,
   getUserList,
-  postUserSave,
+  postUserRegister,
   putUserUpdate
 } from './../services/users/users.js'
 
@@ -17,7 +17,7 @@ router.get('/confirm-account/:token', getConfirmAccount)
 
 // User
 router.get('/user-list', getUserList)
-router.post('/user-save', AUTH, postUserSave)
+router.post('/user-register', AUTH, postUserRegister)
 router.put('/user-update/:id', AUTH, putUserUpdate)
 router.delete('/user-delete/:id', AUTH, deleteUserDelete)
 

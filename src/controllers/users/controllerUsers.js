@@ -1,3 +1,4 @@
+import { sendMail } from '../../utils/email.js'
 import { User } from './../../models/user/modelUser.js'
 import {
   encode64,
@@ -24,8 +25,9 @@ export const controllerUserList = async () => {
     })
 }
 
-export const controllerUserSave = async body => {
+export const controllerUserRegister = async body => {
   const { email, userName } = body
+
   const token = generateAccessToken(
     { email, userName },
     JWT_VALID_TIME.EXPIRE_JWT_CONFIRM_ACCOUNT
@@ -33,6 +35,7 @@ export const controllerUserSave = async body => {
   return await User({ ...body, tokenConfirm: encode64(token) })
     .save()
     .then(data => {
+      sendMail(email, userName)
       const { code, name } = SEND_CODE_STATUS[200]
       return { code, data, message: name }
     })

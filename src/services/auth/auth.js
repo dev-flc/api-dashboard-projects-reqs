@@ -1,12 +1,13 @@
 import { CONTENT_TYPE } from './../../constants/constants.js'
 import {
-  controllerAuthLogin,
+  controllerAuthSignIn,
+  controllerAuthSignOut,
   controllerConfirmAccount
 } from './../../controllers/auth/controllerAuth.js'
 
 // Sign in
 export const postSignIn = async (request, response) => {
-  const resp = await controllerAuthLogin(request.body)
+  const resp = await controllerAuthSignIn(request.body)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
   response.status(resp.code).send(resp)
 }
@@ -15,6 +16,13 @@ export const postSignIn = async (request, response) => {
 export const getConfirmAccount = async (request, response) => {
   const { token } = request.params
   const resp = await controllerConfirmAccount(token)
+  response.set({ 'Content-Type': CONTENT_TYPE.JSON })
+  response.status(resp.code).send(resp)
+}
+
+export const getSignOut = async (request, response) => {
+  const { token } = request.params
+  const resp = await controllerAuthSignOut(token)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
   response.status(resp.code).send(resp)
 }

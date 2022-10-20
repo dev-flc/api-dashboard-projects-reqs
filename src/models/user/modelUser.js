@@ -39,6 +39,7 @@ const schemeUser = new Schema(
     versionKey: false
   }
 )
+
 schemeUser.pre('save', async function (next) {
   const user = this
   if (!user.isModified('password')) return next()
@@ -48,9 +49,21 @@ schemeUser.pre('save', async function (next) {
   next()
 })
 
+schemeUser.pre('findOneAndUpdate', async function (next) {
+  const user = this
+  if (user.getUpdate().password !== undefined) {
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(this.getUpdate().password, salt)
+    user.getUpdate().password = hash
+    return next()
+  } else {
+    return next()
+  }
+})
+
 schemeUser.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password)
 }
 
-const User = model('User', schemeUser)
+const User = model('users', schemeUser)
 export { User }

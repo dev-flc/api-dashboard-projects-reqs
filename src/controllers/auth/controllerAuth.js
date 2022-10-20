@@ -1,16 +1,16 @@
 import { User } from './../../models/user/modelUser.js'
+import { decode64, validationMongoErrors } from '../../utils/utils.js'
 import {
-  decode64,
+  destroyAccessToken,
   generateAccessToken,
-  validationMongoErrors,
   verifyAccessToken
-} from '../../utils/utils.js'
+} from '../../utils/redis.js'
 import {
   JWT_VALID_TIME,
   SEND_CODE_STATUS
 } from './../../constants/constants.js'
 
-export const controllerAuthLogin = async ({ email, password }) => {
+export const controllerAuthSignIn = async ({ email, password }) => {
   return await User.findOne({ email })
     .then(async user => {
       if (!user) throw new Error('Invalid user')
@@ -21,7 +21,7 @@ export const controllerAuthLogin = async ({ email, password }) => {
         throw new Error('Invalid password')
 
       user.password = undefined
-      const token = generateAccessToken(
+      const token = await generateAccessToken(
         { user },
         JWT_VALID_TIME.EXPIRE_JWT_SESSION
       )
@@ -33,6 +33,19 @@ export const controllerAuthLogin = async ({ email, password }) => {
     .catch(error => {
       return validationMongoErrors(error)
     })
+}
+
+export const controllerAuthSignOut = async tokendestroy => {
+  try {
+    const statusToken = await destroyAccessToken(tokendestroy)
+
+    if (!statusToken) throw new Error('The token does not exist')
+
+    const { code, name } = SEND_CODE_STATUS[200]
+    return { code, message: name }
+  } catch (error) {
+    return validationMongoErrors(error)
+  }
 }
 
 export const controllerConfirmAccount = async tokenConfirm => {

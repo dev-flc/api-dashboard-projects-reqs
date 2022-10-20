@@ -2,16 +2,16 @@ import nodemailer from 'nodemailer'
 import { templateEmail } from './templateEmail.js'
 
 const createTransport = () => {
-  const { MAILTRAP_PASS, MAILTRAP_USER, MAILTRAP_HOST, MAILTRAP_PORT } =
-    process.env
+  const { GMAIL_PASS, GMAIL_USER, GMAIL_HOST, GMAIL_PORT } = process.env
 
   return nodemailer.createTransport({
     auth: {
-      pass: MAILTRAP_PASS,
-      user: MAILTRAP_USER
+      pass: GMAIL_PASS,
+      user: GMAIL_USER
     },
-    host: MAILTRAP_HOST,
-    port: MAILTRAP_PORT
+    host: GMAIL_HOST,
+    port: GMAIL_PORT,
+    secure: true
   })
 }
 

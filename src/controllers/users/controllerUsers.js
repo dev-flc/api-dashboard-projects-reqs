@@ -27,7 +27,6 @@ export const controllerUserList = async () => {
 
 export const controllerUserRegister = async body => {
   const { email, userName } = body
-
   const token = generateAccessToken(
     { email, userName },
     JWT_VALID_TIME.EXPIRE_JWT_CONFIRM_ACCOUNT

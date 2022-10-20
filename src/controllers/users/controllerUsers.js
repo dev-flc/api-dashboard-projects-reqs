@@ -1,10 +1,7 @@
+import { generateAccessToken } from '../../utils/redis.js'
 import { sendMail } from '../../utils/email.js'
 import { User } from './../../models/user/modelUser.js'
-import {
-  encode64,
-  generateAccessToken,
-  validationMongoErrors
-} from '../../utils/utils.js'
+import { encode64, validationMongoErrors } from '../../utils/utils.js'
 import {
   JWT_VALID_TIME,
   SEND_CODE_STATUS
@@ -27,7 +24,7 @@ export const controllerUserList = async () => {
 
 export const controllerUserRegister = async body => {
   const { email, userName } = body
-  const token = generateAccessToken(
+  const token = await generateAccessToken(
     { email, userName },
     JWT_VALID_TIME.EXPIRE_JWT_CONFIRM_ACCOUNT
   )

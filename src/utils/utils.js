@@ -1,19 +1,8 @@
-import jwt from 'jsonwebtoken'
 import { SEND_CODE_STATUS } from './../constants/constants.js'
 
 export const encode64 = str => Buffer.from(str).toString('base64')
 
 export const decode64 = str => Buffer.from(str, 'base64').toString('ascii')
-
-export const verifyAccessToken = token =>
-  jwt.verify(token, process.env.JWT_SECRET)
-
-// RS512	RSASSA-PKCS1-v1_5 using SHA-512 hash algorithm
-
-export const generateAccessToken = (data, timeExpireJwt = '1h') =>
-  jwt.sign({ data }, process.env.JWT_SECRET, {
-    expiresIn: timeExpireJwt
-  })
 
 const getKeyErrors = error => {
   const message = {}

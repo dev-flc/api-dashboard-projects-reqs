@@ -1,4 +1,3 @@
-import { clientRedis } from './utils/redis.js'
 import { connectDatabase } from './database/connectDatabase.js'
 import dotenv from 'dotenv'
 import express from 'express'
@@ -20,6 +19,5 @@ APP.get('*', (request, response) => {
 
 APP.listen(NEW_PORT, async () => {
   connectDatabase()
-  await clientRedis.connect()
   console.log(`Server successfull: http://localhost:${NEW_PORT}`)
 })

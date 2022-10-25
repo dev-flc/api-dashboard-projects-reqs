@@ -1,7 +1,7 @@
-import { verifyAccessToken } from './../utils/redis.js'
+import { verifyAccessToken } from './../utils/jwt.js'
 import { APPLY_AUTH, SEND_CODE_STATUS } from './../constants/constants.js'
 
-export const AUTH = async (req, res, next) => {
+export const AUTH = (req, res, next) => {
   if (process.env.APPLY_AUTH === APPLY_AUTH.ON) {
     const tokenHeader =
       req.body.token || req.query.token || req.headers.authorization
@@ -12,7 +12,7 @@ export const AUTH = async (req, res, next) => {
       return res.status(code).send(name)
     }
     try {
-      const decoded = await verifyAccessToken(token)
+      const decoded = verifyAccessToken(token)
       req.user = decoded
     } catch (err) {
       const { code, name } = SEND_CODE_STATUS[401]

@@ -1,4 +1,4 @@
-import { generateAccessToken } from '../../utils/redis.js'
+import { generateAccessToken } from '../../utils/jwt.js'
 import { sendMail } from '../../utils/email.js'
 import { User } from './../../models/user/modelUser.js'
 import { encode64, validationMongoErrors } from '../../utils/utils.js'

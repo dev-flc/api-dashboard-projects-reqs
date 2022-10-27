@@ -1,5 +1,5 @@
 {
-  "name": "backend-blog",
+  "name": "api-dashboard-projects-reqs",
   "version": "1.0.0",
   "description": "backend blog",
   "main": "api/index.js",
@@ -19,11 +19,11 @@
     "dev": "nodemon src/index.js",
     "build": "npm run clean && babel src --out-dir api --copy-files ",
     "start": "node api/index.js",
-    "logs": "heroku logs --tail --app flc-backend-blog"
+    "logs": "heroku logs --tail --app flc-api-dashboard-projects-reqs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ferch01992/backend-blog.git"
+    "url": "git+https://github.com/ferch01992/api-dashboard-projects-reqs.git"
   },
   "keywords": [
     "Node JS",
@@ -33,9 +33,9 @@
   "author": "Ferch01992",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ferch01992/backend-blog/issues"
+    "url": "https://github.com/ferch01992/api-dashboard-projects-reqs/issues"
   },
-  "homepage": "https://github.com/ferch01992/backend-blog#readme",
+  "homepage": "https://github.com/ferch01992/api-dashboard-projects-reqs#readme",
   "devDependencies": {
     "@babel/cli": "7.19.3",
     "@babel/core": "7.19.3",

@@ -9,6 +9,7 @@ import {
 
 export const controllerUserList = async () => {
   return await User.find()
+    .select(['-password', '-tokenConfirm', '-createdAt', '-updatedAt'])
     .then(dataList => {
       const data = dataList.reduce(
         (obj, item) => ({ ...obj, [item._id]: item }),
@@ -30,9 +31,10 @@ export const controllerUserRegister = async body => {
   )
   return await User({ ...body, tokenConfirm: encode64(token) })
     .save()
-    .then(data => {
+    .then(({ _id, email, userName, confirmAccount }) => {
       sendMail(email, userName)
       const { code, name } = SEND_CODE_STATUS[200]
+      const data = { _id, confirmAccount, email, userName }
       return { code, data, message: name }
     })
     .catch(error => {

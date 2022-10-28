@@ -1,0 +1,8 @@
+POST {{url}}/api/sign-in
+content-type: application/json
+Authorization: Bearer {{token-authorization}}
+
+{
+    "email": "fer.lc.developer@gmail.com",
+    "password": "forever"
+}

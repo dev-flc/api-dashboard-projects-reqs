@@ -1,0 +1,12 @@
+{
+  "rest-client.environmentVariables": {
+    "local": {
+      "url": "http://localhost:3002",
+      "token-authorization": "123"
+    },
+    "production": {
+      "url": "https://flc-backend-blog.herokuapp.com",
+      "token-authorization": "123"
+    }
+  }
+}

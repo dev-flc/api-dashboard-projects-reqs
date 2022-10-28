@@ -10,15 +10,30 @@ const schemeUser = new Schema(
     email: {
       index: { unique: true },
       lowercase: true,
-      require: [true, 'Please enter your email'],
       trim: true,
       type: String,
       unique: true
     },
     password: {
-      require: [true, 'Please enter your password'],
       trim: true,
       type: String
+    },
+    personalInformation: {
+      firstName: {
+        lowercase: true,
+        trim: true,
+        type: String
+      },
+      lastName: {
+        lowercase: true,
+        trim: true,
+        type: String
+      },
+      name: {
+        lowercase: true,
+        trim: true,
+        type: String
+      }
     },
     tokenConfirm: {
       default: null,
@@ -28,7 +43,6 @@ const schemeUser = new Schema(
     userName: {
       index: { unique: true },
       lowercase: true,
-      require: [true, 'Please enter your user name'],
       trim: true,
       type: String,
       unique: true

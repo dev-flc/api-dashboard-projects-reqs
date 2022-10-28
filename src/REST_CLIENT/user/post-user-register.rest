@@ -1,0 +1,14 @@
+POST {{url}}/api/user-register
+content-type: application/api/json
+Authorization: Bearer {{token-authorization}}
+
+{
+    "email": "fer.lc.developer@gmail.com",
+    "password": "forever",
+    "userName":"ferlc",
+    "personalInformation": {
+      "firstName": "apellido paterno",
+      "lastName": "apellido materno",
+      "name": "nombre usuario"
+    }
+}

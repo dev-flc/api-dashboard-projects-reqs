@@ -1,0 +1,4 @@
+@tokenConfirmAccount=123123
+
+GET {{url}}/api/confirm-account/{{tokenConfirmAccount}}
+content-type: application/json

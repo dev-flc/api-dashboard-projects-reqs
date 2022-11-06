@@ -14,16 +14,16 @@ import { getConfirmAccount, postSignIn } from './../services/auth/auth.js'
 const router = express.Router()
 
 // Auth
-router.post('/api/sign-in', postSignIn)
-router.get('/api/confirm-account/:token', getConfirmAccount)
+router.post('/api/auth/sign-in', postSignIn)
+router.get('/api/auth/confirm-account/:token', getConfirmAccount)
 
 // User
-router.get('/api/user-list', getUserList)
-router.post('/api/user-register', postUserRegister)
-router.put('/api/user-update/:id', AUTH, putUserUpdate)
-router.delete('/api/user-delete/:id', AUTH, deleteUserDelete)
+router.get('/api/user/list', getUserList)
+router.post('/api/user/register', postUserRegister)
+router.put('/api/user/update/:id', AUTH, putUserUpdate)
+router.delete('/api/user/delete/:id', AUTH, deleteUserDelete)
 
 // NOTE
-router.get('/api/note-list', CACHE, getNoteList)
+router.get('/api/note/list', CACHE, getNoteList)
 
 export { router }

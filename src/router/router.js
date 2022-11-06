@@ -18,12 +18,12 @@ router.post('/api/sign-in', postSignIn)
 router.get('/api/confirm-account/:token', getConfirmAccount)
 
 // User
-router.get('/api/user-list', AUTH, getUserList)
-router.post('/api/user-register', AUTH, postUserRegister)
+router.get('/api/user-list', getUserList)
+router.post('/api/user-register', postUserRegister)
 router.put('/api/user-update/:id', AUTH, putUserUpdate)
 router.delete('/api/user-delete/:id', AUTH, deleteUserDelete)
 
 // NOTE
-router.get('/api/note-list', AUTH, CACHE, getNoteList)
+router.get('/api/note-list', CACHE, getNoteList)
 
 export { router }

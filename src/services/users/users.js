@@ -15,7 +15,6 @@ export const getUserList = async (request, response) => {
 
 // Register user
 export const postUserRegister = async (request, response) => {
-  console.log('request.body==>', request.body)
   const resp = await controllerUserRegister(request.body)
   response.set({ 'Content-Type': CONTENT_TYPE.JSON })
   response.status(resp.code).send(resp)

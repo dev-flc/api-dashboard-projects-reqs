@@ -1,13 +1,13 @@
 module.exports = {
   env: {
     es2021: true,
-    node: true,
+    node: true
   },
   extends: ['standard', 'prettier'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     'sort-imports': [
@@ -17,8 +17,8 @@ module.exports = {
         ignoreCase: true,
         ignoreDeclarationSort: false,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['all', 'single', 'multiple', 'none'],
-      },
+        memberSyntaxSortOrder: ['all', 'single', 'multiple', 'none']
+      }
     ],
     'sort-keys': [
       'error',
@@ -26,8 +26,8 @@ module.exports = {
       {
         caseSensitive: true,
         minKeys: 2,
-        natural: false,
-      },
-    ],
-  },
+        natural: false
+      }
+    ]
+  }
 }

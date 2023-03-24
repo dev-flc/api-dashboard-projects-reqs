@@ -14,7 +14,7 @@ APP.use(express.json())
 APP.use('/', router)
 
 APP.get('*', (request, response) => {
-  response.send('4 0 4')
+  response.send('🔥 4 0 4 🔥')
 })
 
 APP.listen(NEW_PORT, async () => {

@@ -24,7 +24,6 @@ export const controllerUserList = async () => {
 }
 
 export const controllerUserRegister = async body => {
-  console.log('body==>', body)
   const { email, userName } = body
   const token = await generateAccessToken(
     { email, userName },
@@ -33,7 +32,6 @@ export const controllerUserRegister = async body => {
   return await User({ ...body, tokenConfirm: encode64(token) })
     .save()
     .then(({ _id, email, userName, confirmAccount, personalInformation }) => {
-      console.log(personalInformation)
       sendMail(email, userName)
       const { code, name } = SEND_CODE_STATUS[200]
       const data = { _id, confirmAccount, email, personalInformation, userName }
